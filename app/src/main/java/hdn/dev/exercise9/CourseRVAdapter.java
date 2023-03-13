@@ -1,6 +1,9 @@
 package hdn.dev.exercise9;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
 public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHolder> {
     private ArrayList<Course> courses;
@@ -38,7 +44,13 @@ public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 // update, delete here
-
+                Intent intent = new Intent(context, DetailActivity.class);
+                Bundle data = new Bundle();
+                data.putString("name", course.getName());
+                data.putString("desc", course.getDescription());
+                data.putString("duration", course.getDuration());
+                intent.putExtra("data", data);
+                context.startActivity(intent);
 
             }
         });
